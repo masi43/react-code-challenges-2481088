@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
 
 export default function ScoreKeeper () {
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(parseInt(0));
 
+  useEffect( () => {
+    setScore(localStorage.getItem('score'));
+  },[])
+
+  useEffect( () => {
+    localStorage.setItem('score', score);
+  },[score])
+  
   return (
     <div>
       <h1>Your score is: {score}</h1>
